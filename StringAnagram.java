@@ -3,6 +3,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Check whether two Strings are anagram of each other
+ */
 public class StringAnagram {
     public static void main(String[] args) {
         String str1 = "Race";
