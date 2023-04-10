@@ -1,5 +1,7 @@
 import java.sql.SQLOutput;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Set;
 
 public class StringAnagram {
     public static void main(String[] args) {
@@ -11,7 +13,8 @@ public class StringAnagram {
 
 //      if(isAnagram1(str1, str2)) {
 //        if(isAnagram2(str1, str2)) {
-        if(isAnagram3(str1, str2)) {
+//        if(isAnagram3(str1, str2)) {
+        if(isAnagram4(str1, str2)) {
             System.out.println(str1 +
                     " and " + str2 + " are anagram.");
         } else {
@@ -119,6 +122,57 @@ public class StringAnagram {
                 {
                     return false;
                 }
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    /**
+     * Check whether two strings are anagrams of each other by storing all characters in HashMap
+     * The idea is a modification of the above approach where instead of creating an array of 256 characters HashMap is used to store characters and count of characters in HashMap. Idea is to put all characters of one String in HashMap and reduce them as they are encountered while looping over other the string.
+     * @param str1
+     * @param str2
+     * @return
+     */
+    public static boolean isAnagram4(String str1, String str2) {
+        //Time Complexity O(n)
+        //check if length is same
+        int NO_OF_CHARS = 256;
+        if(str1.length() == str2.length()) {
+            // Create a HashMap containing Character as Key and
+            // Integer as Value. We will be storing character as
+            // Key and count of character as Value.
+            HashMap<Character, Integer> map = new HashMap<>();
+
+            //Loop over all character of String str1 and put in
+            // HashMap.
+            for (int i = 0; i < str1.length(); i++) {
+                map.put(str1.charAt(i), map.getOrDefault(str1.charAt(i) , 0) + 1);
+            }
+
+            // Now loop over String str2
+            for (int i = 0; i < str2.length(); i++) {
+                if (map.containsKey(str2.charAt(i))) {
+                    map.put(str2.charAt(i),
+                            map.get(str2.charAt(i)) - 1);
+                }
+                else {
+                    return false;
+                }
+            }
+
+            // Extract all keys of HashMap/map
+            Set<Character> keys = map.keySet();
+            // Loop over all keys and check if all keys are 0.
+            // If so it means it is anagram.
+            for (Character key : keys) {
+                if (map.get(key) != 0) {
+                    return false;
+                }
+            }
+            // Returning True as all keys are zero
             return true;
         }
         else {
