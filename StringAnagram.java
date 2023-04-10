@@ -9,8 +9,11 @@ public class StringAnagram {
         str1 = str1.toLowerCase();
         str2 = str2.toLowerCase();
 
-        if(isAnagram1(str1, str2)) {
-            System.out.println(str1 + " and " + str2 + " are anagram.");
+//      if(isAnagram1(str1, str2)) {
+//        if(isAnagram2(str1, str2)) {
+        if(isAnagram3(str1, str2)) {
+            System.out.println(str1 +
+                    " and " + str2 + " are anagram.");
         } else {
             System.out.println(str1 + " and " + str2 + " are not anagram.");
         }
@@ -44,28 +47,79 @@ public class StringAnagram {
         }
     }
 
+    /**
+     * The idea is based in an assumption that the set of possible characters in both strings is small. that the characters are stored using 8 bit and there can be 256 possible characters
+     * So count the frequency of the characters and if the frequency of characters in both strings are the same, they are anagram of each other.
+     * @param str1
+     * @param str2
+     * @return
+     */
     public static boolean isAnagram2(String str1, String str2) {
-        //Time Complexity O(N * LogN)
+        //Time Complexity O(n)
         //check if length is same
+        int NO_OF_CHARS = 256;
         if(str1.length() == str2.length()) {
-            // convert strings to char array
-            char[] charArray1 = str1.toCharArray();
-            char[] charArray2 = str2.toCharArray();
+            // Create 2 count arrays and initialize
+            // all values as 0
+            int count1[] = new int[NO_OF_CHARS];
+            Arrays.fill(count1, 0);
+            int count2[] = new int[NO_OF_CHARS];
+            Arrays.fill(count2, 0);
+            int i;
 
-            // sort the char array
-            Arrays.sort(charArray1);
-            Arrays.sort(charArray2);
-
-            // if sorted char arrays are same
-            // then the string is anagram
-            boolean result = Arrays.equals(charArray1, charArray2);
-
-            if(result) {
-                return true;
+            // For each character in input strings,
+            // increment count in the corresponding
+            // count array
+            for (i = 0; i < str1.length() && i < str2.length();
+                 i++) {
+                count1[str1.charAt(i)]++;
+                count2[str2.charAt(i)]++;
             }
-            else {
-                return false;
+
+            // Compare count arrays
+            System.out.println("count1 " + count1.toString());
+            System.out.println("count2 " + count2.toString());
+            for (i = 0; i < NO_OF_CHARS; i++)
+                if (count1[i] != count2[i])
+                    return false;
+
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+
+    /**
+     * The above can be modified to use only one count array instead of two. Increment the value in count array for characters in str1 and decrement for characters in str2. Finally, if all count values are 0, then the two strings are anagram of each other.
+     */
+    public static boolean isAnagram3(String str1, String str2) {
+        //Time Complexity O(n)
+        //check if length is same
+        int NO_OF_CHARS = 256;
+        if(str1.length() == str2.length()) {
+            int[] count = new int[NO_OF_CHARS];
+            int i;
+
+            // For each character in input strings,
+            // increment count in the corresponding
+            // count array
+            for(i = 0; i < str1.length(); i++)
+            {
+                count[str1.charAt(i)]++;
+                count[str2.charAt(i)]--;
             }
+
+            // Compare count arrays
+            // See if there is any non-zero
+            // value in count array
+            for(i = 0; i < NO_OF_CHARS; i++)
+                if (count[i] != 0)
+                {
+                    return false;
+                }
+            return true;
         }
         else {
             return false;
