@@ -13,4 +13,26 @@ public class WordsFoundInTheSentences {
         }
         return wordCount;
     }
+
+    public static int mostWordsFound2(String[] sentences) {
+        int maxWords = 0;
+        for (int i = 0; i < sentences.length; i++) {
+            String sentence = sentences[i];
+            char[] charArray = sentence.toCharArray();
+            int count = 0;
+            for (int j = 0; j < charArray.length; j++) {
+                if (charArray[j] == ' ') {
+                    count++;
+                }
+            }
+            if (count > maxWords) {
+                maxWords = count;
+            }
+        }
+        maxWords += 1; // Only space was considered. So 1 is added to get max number of words
+        return maxWords;
+    }
+
+
+
 }
