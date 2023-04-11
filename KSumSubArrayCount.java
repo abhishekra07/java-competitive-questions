@@ -1,5 +1,4 @@
 import java.util.HashMap;
-
 public class KSumSubArrayCount {
     public static void main(String[] args) {
         subarraySum(new int[]{3, 9, -2, 4, 1, -7, 2, 6, -5, 8, -3, -7, 6, 2, 1}, 5);
