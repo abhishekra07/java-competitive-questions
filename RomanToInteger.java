@@ -1,6 +1,6 @@
 public class RomanToInteger {
     public static void main(String[] args) {
-        System.out.println(romanToInt("III"));
+        System.out.println(romanToInt("MCMIV"));
     }
     public static int romanToInt(String str) {
         int res = 0;
