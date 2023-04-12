@@ -1,4 +1,4 @@
-public class WordsFoundInTheSentences {
+public class WordsCountInTheSentences {
     public static void main(String[] args) {
         System.out.println(mostWordsFound(new String[]{"alice and bob love leetcode", "i think so too", "this is great thanks very much"}));
     }
