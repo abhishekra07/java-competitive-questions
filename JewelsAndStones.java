@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class JewelsAndStones {
     public static void main(String[] args) {
-        System.out.println(numJewelsInStones2("aA", "aAAbbbb"));
+        System.out.println(numJewelsInStones3("aA", "aAAbbbb"));
     }
 
     public static int numJewelsInStones(String jewels, String stones) {
@@ -41,5 +41,14 @@ public class JewelsAndStones {
             }
         }
         return res;
+    }
+
+    public static int numJewelsInStones3(String jewels, String stones) {
+        int n=stones.length();
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(jewels.indexOf(stones.charAt(i))>-1) count++;
+        }
+        return count;
     }
 }
