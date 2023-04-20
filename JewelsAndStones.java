@@ -13,7 +13,7 @@ import java.util.Set;
  */
 public class JewelsAndStones {
     public static void main(String[] args) {
-        System.out.println(numJewelsInStones("aA", "aAAbbbb"));
+        System.out.println(numJewelsInStones2("aA", "aAAbbbb"));
     }
 
     public static int numJewelsInStones(String jewels, String stones) {
@@ -23,6 +23,21 @@ public class JewelsAndStones {
                 if(jewels.charAt(i) == stones.charAt(j)) {
                     res++;
                 }
+            }
+        }
+        return res;
+    }
+
+    public static int numJewelsInStones2(String jewels, String stones) {
+        Set<Character> jewelsSet = new HashSet<>();
+        int res = 0;
+        for(char ch : jewels.toCharArray()) {
+            jewelsSet.add(ch);
+        }
+
+        for(int i=0;i<stones.length();i++) {
+            if(jewelsSet.contains(stones.charAt(i))) {
+                res++;
             }
         }
         return res;
